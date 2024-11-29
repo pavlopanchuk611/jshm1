@@ -18,7 +18,7 @@ public class Main {
             System.out.println("5. Вийти");
             System.out.print("Виберіть опцію: ");
             choice = scanner.nextInt();
-            scanner.nextLine(); // очищаємо буфер
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -37,7 +37,7 @@ public class Main {
                 case 3:
                     System.out.print("Введіть ID тварини для оновлення: ");
                     int idToUpdate = scanner.nextInt();
-                    scanner.nextLine(); // очищаємо буфер
+                    scanner.nextLine();
                     System.out.print("Введіть нове ім'я: ");
                     String newName = scanner.nextLine();
                     System.out.print("Введіть новий вид: ");

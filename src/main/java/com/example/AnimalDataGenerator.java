@@ -26,12 +26,11 @@ public class AnimalDataGenerator {
                     preparedStatement.setString(2, species);
                     preparedStatement.addBatch();
 
-                    // Виконання батчу кожні 1000 записів для підвищення продуктивності
                     if (i % 1000 == 0) {
                         preparedStatement.executeBatch();
                     }
                 }
-                // Виконати залишок записів
+
                 preparedStatement.executeBatch();
             }
             System.out.println("Дані успішно згенеровані та збережені в базі даних.");

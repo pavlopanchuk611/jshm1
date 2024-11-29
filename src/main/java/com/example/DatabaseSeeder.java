@@ -15,16 +15,12 @@ public class DatabaseSeeder {
         Faker faker = new Faker();
 
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
-            // Додати статуси замовлень
             addOrderStatuses(connection, faker);
 
-            // Додати клієнтів
             addClients(connection, faker);
 
-            // Додати послуги
             addServices(connection, faker);
 
-            // Додати замовлення
             addOrders(connection, faker);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,10 +67,10 @@ public class DatabaseSeeder {
         String sql = "INSERT INTO orders (client_id, service_id, order_date, status_id) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             for (int i = 0; i < 200; i++) {
-                preparedStatement.setInt(1, faker.number().numberBetween(1, 100)); // ID клієнта
-                preparedStatement.setInt(2, faker.number().numberBetween(1, 50)); // ID послуги
+                preparedStatement.setInt(1, faker.number().numberBetween(1, 100));
+                preparedStatement.setInt(2, faker.number().numberBetween(1, 50));
                 preparedStatement.setTimestamp(3, new java.sql.Timestamp(faker.date().past(30, java.util.concurrent.TimeUnit.DAYS).get,Time());
-                preparedStatement.setInt(4, faker.number().numberBetween(1, 3)); // ID статусу
+                preparedStatement.setInt(4, faker.number().numberBetween(1, 3));
                 preparedStatement.addBatch();
             }
             preparedStatement.executeBatch();
