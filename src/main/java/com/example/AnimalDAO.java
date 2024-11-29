@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnimalDAO {
-    private String jdbcURL = "jdbc:mysql://localhost:3306/your_database"; // Змініть на ваш URL
-    private String jdbcUsername = "your_username"; // Ваше ім'я користувача
-    private String jdbcPassword = "your_password"; // Ваш пароль
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/my_database";
+    private static final String USER = "pavlo";
+    private static final String PASSWORD = "pavlopavlo12!";
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);

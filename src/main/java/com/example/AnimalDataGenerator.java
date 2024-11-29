@@ -8,9 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AnimalDataGenerator {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/animal_db";
-    private static final String USER = "your_username"; // Змініть на ваше ім'я користувача
-    private static final String PASSWORD = "your_password"; // Змініть на ваш пароль
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/my_database";
+    private static final String USER = "pavlo";
+    private static final String PASSWORD = "pavlopavlo12!";
 
     public static void main(String[] args) {
         Faker faker = new Faker();

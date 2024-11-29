@@ -7,9 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseSeeder {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/your_database";
-    private static final String USER = "your_username"; // Змініть на ваше ім'я користувача
-    private static final String PASSWORD = "your_password"; // Змініть на ваш пароль
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/my_database";
+    private static final String USER = "pavlo";
+    private static final String PASSWORD = "pavlopavlo12!";
 
     public static void main(String[] args) {
         Faker faker = new Faker();
@@ -73,7 +73,7 @@ public class DatabaseSeeder {
             for (int i = 0; i < 200; i++) {
                 preparedStatement.setInt(1, faker.number().numberBetween(1, 100)); // ID клієнта
                 preparedStatement.setInt(2, faker.number().numberBetween(1, 50)); // ID послуги
-                preparedStatement.setTimestamp(3, new java.sql.Timestamp(faker.date().past(30, java.util.concurrent.TimeUnit.DAYS).get Time()));
+                preparedStatement.setTimestamp(3, new java.sql.Timestamp(faker.date().past(30, java.util.concurrent.TimeUnit.DAYS).get,Time());
                 preparedStatement.setInt(4, faker.number().numberBetween(1, 3)); // ID статусу
                 preparedStatement.addBatch();
             }
