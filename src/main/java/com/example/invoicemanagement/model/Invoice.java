@@ -1,4 +1,4 @@
-package com.example;
+package com.example.invoicemanagement.model;
 
 @Entity
 public class Invoice {

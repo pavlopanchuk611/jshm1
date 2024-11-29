@@ -1,4 +1,6 @@
-package com.example;
+package com.example.invoicemanagement.service;
+
+import com.example.invoicemanagement.model.Invoice;
 
 @Service
 public class InvoiceService {

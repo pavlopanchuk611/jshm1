@@ -1,4 +1,4 @@
-package com.example;
+package com.example.invoicemanagement;
 
 @WebServlet("/downloadFile")
 public class FileDownloadServlet extends HttpServlet {

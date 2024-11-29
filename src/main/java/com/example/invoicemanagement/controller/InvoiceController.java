@@ -1,4 +1,6 @@
-package com.example;
+package com.example.invoicemanagement.controller;
+
+import com.example.invoicemanagement.service.InvoiceService;
 
 @RestController
 @RequestMapping("/invoices")

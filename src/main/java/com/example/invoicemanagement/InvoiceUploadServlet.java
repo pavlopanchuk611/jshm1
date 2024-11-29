@@ -1,4 +1,4 @@
-package com.example;
+package com.example.invoicemanagement;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;

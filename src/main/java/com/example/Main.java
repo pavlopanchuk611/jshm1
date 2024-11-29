@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.animal.AnimalDAO;
+
 import java.util.List;
 import java.util.Scanner;
 

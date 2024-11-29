@@ -1,4 +1,4 @@
-package com.example;
+package com.example.invoicemanagement;
 
 @WebServlet("/deleteInvoice")
 public class InvoiceDeleteServlet extends HttpServlet {

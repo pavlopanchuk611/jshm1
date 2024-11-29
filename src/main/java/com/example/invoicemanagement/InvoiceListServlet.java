@@ -1,4 +1,4 @@
-package com.example;
+package com.example.invoicemanagement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

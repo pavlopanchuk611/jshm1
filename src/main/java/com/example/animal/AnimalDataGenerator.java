@@ -1,4 +1,4 @@
-package com.example;
+package com.example.animal;
 
 import com.github.javafaker.Faker;
 

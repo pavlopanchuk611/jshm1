@@ -1,4 +1,4 @@
-package com.example;
+package com.example.animal;
 
 import java.sql.*;
 import java.util.ArrayList;
