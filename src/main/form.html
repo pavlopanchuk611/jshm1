@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагувати рахунок</title>
+</head>
+<body>
+<h1>Редагувати рахунок</h1>
+<form action="updateInvoice" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="${invoice.id}">
+    <label for="invoiceName">Назва рахунка:</label>
+    <input type="text" id="invoiceName" name="invoiceName" value="${invoice.name}" required><br><br>
+    <label for="photo">Виберіть нове фото (якщо потрібно):</label>
+    <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+    <img src="uploads/${invoice.photoFilename}" width="100" height="100" alt="Поточне фото"><br><br>
+    <input type="submit" value="Оновити рахунок">
+</form>
+</body>
+</html>

@@ -17,8 +17,7 @@ import java.util.List;
 @WebServlet("/uploadInvoice")
 @MultipartConfig
 public class InvoiceUploadServlet extends HttpServlet {
-    private static final String UPLOAD_DIRECTORY = "uploads"; // Директорія для збереження фото
-
+    private static final String UPLOAD_DIRECTORY = "uploads";
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (ServletFileUpload.isMultipartContent(request)) {
@@ -41,7 +40,6 @@ public class InvoiceUploadServlet extends HttpServlet {
                     }
                 }
 
-                // Збереження інформації про рахунок у базі даних
                 saveInvoiceToDatabase(invoiceName, photoFilename);
 
                 response.getWriter().println("Рахунок успішно створено з фото: " + photoFilename);

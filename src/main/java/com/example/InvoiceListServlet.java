@@ -11,37 +11,50 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-@WebServlet("/listInvoices")
-public class InvoiceListServlet extends HttpServlet {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/your_database"; // Змініть на ваш URL бази даних
-    private static final String USER = "your_username"; // Змініть на ваше ім'я користувача
-    private static final String PASS = "your_password"; // Змініть на ваш пароль
+@WebServlet("/updateInvoice")
+@MultipartConfig
+public class InvoiceUpdateServlet extends HttpServlet {
+    private static final String UPLOAD_DIRECTORY = "uploads";
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String invoiceName = request.getParameter("invoiceName");
+        Long id = Long.parseLong(request.getParameter("id"));
+        String photoFilename = null;
+
+        if (ServletFileUpload.isMultipartContent(request)) {
+            try {
+                List<FileItem> formItems = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+                for (FileItem item : formItems) {
+                    if (!item.isFormField()) {
+                        photoFilename = item.getName();
+                        File uploadFile = new File(getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY + File.separator + photoFilename);
+                        item.write(uploadFile);
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        updateInvoiceInDatabase(id, invoiceName, photoFilename);
+
+        response.getWriter().println("Рахунок успішно оновлено!");
+    }
+
+    private void updateInvoiceInDatabase(Long id, String invoiceName, String photoFilename) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
-            String sql = "SELECT invoiceName, photoFilename FROM invoices"; // Змініть на вашу таблицю
-            ResultSet rs = stmt.executeQuery(sql);
-
-            response.getWriter().println("<h1>Список рахунків</h1>");
-            response.getWriter().println("<table border='1'><tr><th>Назва рахунка</th><th>Фото</th></tr>");
-
-            while (rs.next()) {
-                String invoiceName = rs.getString("invoiceName");
-                String photoFilename = rs.getString("photoFilename");
-                response.getWriter().println("<tr><td>" + invoiceName + "</td><td><img src='uploads/" + photoFilename + "' width='100' height='100'></td></tr>");
-            }
-            response.getWriter().println("</table>");
-
-            rs.close();
-            stmt.close();
+            String sql = "UPDATE invoices SET invoiceName = ?, photoFilename = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, invoiceName);
+            pstmt.setString(2, photoFilename);
+            pstmt.setLong(3, id);
+            pstmt.executeUpdate();
+            pstmt.close();
             conn.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            response.getWriter().println("Помилка при отриманні рахунків: " + e.getMessage());
         }
     }
 }
